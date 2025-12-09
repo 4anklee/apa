@@ -1,33 +1,17 @@
-# for a description of available keys, see https://github.com/typst/packages/?tab=readme-ov-file#package-format
-
 [package]
-name = ""
+name = "apa7"
 version = "0.1.0"
 entrypoint = "src/lib.typ"
-authors = []
-license = "Unlicense"
-description = ""
-homepage = ""
-repository = ""
-keywords = []
-categories = []
-disciplines = []
-# compiler = ""
-exclude = [
-  ".github",
-  "docs",
-  "scripts",
-  "tests",
-  ".typstignore",
-  "Justfile",
-  "thumbnail-dark.svg",
-  "thumbnail-light.svg",
-]
+authors = ["Frank Lee"]
+license = "MIT"
+description = "APA 7th Edition student paper template for Typst"
+homepage = "https://github.com/4anklee/apa"
+repository = "https://github.com/4anklee/apa"
+keywords = ["apa", "academic", "paper", "student", "citation", "essay"]
+categories = ["paper"]
+disciplines = ["psychology", "sociology", "education"]
 
-# [template]
-# path = "template"
-# entrypoint = "main.typ"
-# thumbnail = "thumbnail.png"
-
-# [tool.mytool]
-# foo = "bar"
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

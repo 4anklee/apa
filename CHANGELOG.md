@@ -7,40 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-<details>
-<summary>Migration guide from v0.1.X</summary>
-
-<!-- Write migration guide here -->
-
-</details>
+## [0.1.0] - 2025-12-08
 
 ### Added
 
-### Changed
+- Initial APA 7th Edition student paper template
+- Title page with author, affiliation, course, instructor, and due date
+- Optional abstract page with keywords support
+- Five levels of APA headings (`heading-1` through `heading-5`)
+- Block quote formatting for quotes 40+ words
+- Reference page with hanging indents
+- Figure and table formatting functions (`apa-figure`, `apa-table`)
+- Appendix support
+- Citation helper functions (`pcite`, `ncite`, `pcite-p`)
+- Configurable font and font size
+- Multiple author support
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
-## [0.1.0] - 2025-01-01
-
-### Added
-
-<!-- Describe the feature set of the initial release here -->
--
--
--
-
-<!--
-Below are the target URLs for each version
-You can link version numbers (in level-2 headings)
-to the corresponding tag on GitHub, or the diff
-in comparison to the previous release
--->
-
-[Unreleased]: https://github.com/<author>/<my-package>/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/<author>/<my-package>/releases/tag/v0.1.0
+[Unreleased]: https://github.com/4anklee/apa/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/4anklee/apa/releases/tag/v0.1.0

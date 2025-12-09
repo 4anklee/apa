@@ -1,69 +1,225 @@
-# The `my-package` Package
-<div align="center">Version 0.1.0</div>
+# APA 7th Edition Template for Typst
 
-A short description about the project and/or client.
+A Typst template for creating academic papers formatted according to APA 7th Edition guidelines (student paper format).
 
-## Template adaptation checklist
+## Features
 
-- [ ] Fill out `README.md`
-  - Change the `my-package` package name, including code snippets
-  - Check section contents and/or delete sections that don't apply
-- [ ] Check and/or replace `LICENSE` by something that suits your needs
-- [ ] Fill out `typst.toml`
-  - See also the [typst/packages README](https://github.com/typst/packages/?tab=readme-ov-file#package-format)
-- [ ] Adapt Repository URLs in `CHANGELOG.md`
-  - Consider only committing that file with your first release, or removing the "Initial Release" part in the beginning
-- [ ] Adapt or deactivate the release workflow in `.github/workflows/release.yml`
-  - to deactivate it, delete that file or remove/comment out lines 2-4 (`on:` and following)
-  - to use the workflow
-    - [ ] check the values under `env:`, particularly `REGISTRY_REPO`
-    - [ ] if you don't have one, [create a fine-grained personal access token](https://github.com/settings/tokens?type=beta) with [only Contents permission](https://stackoverflow.com/a/75116350/371191) for the `REGISTRY_REPO`
-    - [ ] on this repo, create a secret `REGISTRY_TOKEN` (at `https://github.com/[user]/[repo]/settings/secrets/actions`) that contains the so created token
-
-    if configured correctly, whenever you create a tag `v...`, your package will be pushed onto a branch on the `REGISTRY_REPO`, from which you can then create a pull request against [typst/packages](https://github.com/typst/packages/)
-- [ ] remove/replace the example test case
-- [ ] (add your actual code, docs and tests)
-- [ ] remove this section from the README
+- Title page with all required elements (title, author, affiliation, course, instructor, due date)
+- Optional abstract page with keywords
+- Proper 1-inch margins on all sides
+- Double-spacing throughout
+- Times New Roman 12pt font (configurable)
+- Page numbers in the header
+- Five levels of APA headings
+- Block quotes (for 40+ words)
+- Figure and table formatting
+- Reference page with hanging indents
+- Appendix support
+- Citation helper functions
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on the typst web app. Perhaps a short code example on importing the package and a very simple teaser usage.
+```typ
+#import "@preview/apa7:0.1.0": *
+
+#show: apa.with(
+  title: "Your Paper Title Here",
+  author: "Your Name",
+  affiliation: "Department of Psychology, University Name",
+  course: "PSY 101: Introduction to Psychology",
+  instructor: "Dr. Professor Name",
+  due-date: "December 8, 2025",
+)
+
+Your paper content goes here...
+```
+
+## Installation
+
+### Using Typst Universe (Recommended)
+
+Once published, you can import directly:
 
 ```typ
-#import "@preview/my-package:0.1.0": *
-
-#show: my-show-rule.with()
-#my-func()
+#import "@preview/apa7:0.1.0": *
 ```
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./thumbnail-dark.svg">
-  <img src="./thumbnail-light.svg">
-</picture>
+### Local Installation
 
-### Installation
+1. Clone this repository
+2. Run the setup script: `./scripts/setup`
+3. Import in your document:
 
-A step by step guide that will tell you how to get the development environment up and running. This should explain how to clone the repo and where to (maybe a link to the typst documentation on it), along with any pre-requisite software and installation steps.
-
-```
-$ First step
-$ Another step
-$ Final step
+```typ
+#import "@local/apa7:0.1.0": *
 ```
 
 ## Usage
 
-A more in-depth description of usage. Any template arguments? A complicated example that showcases most if not all of the functions the package provides? This is also an excellent place to signpost the manual.
+### Basic Setup
 
 ```typ
-#import "@preview/my-package:0.1.0": *
+#import "@preview/apa7:0.1.0": *
 
-#let my-complicated-example = ...
+#show: apa.with(
+  title: "The Effects of Sleep on Memory Consolidation",
+  author: "Jane Smith",
+  affiliation: "Department of Psychology, State University",
+  course: "PSY 301: Cognitive Psychology",
+  instructor: "Dr. John Doe",
+  due-date: "December 15, 2025",
+)
+
+// Your paper content starts here
+// The title is automatically repeated at the beginning of the body
 ```
 
-## Additional Documentation and Acknowledgments
+### With Abstract and Keywords
 
-* Project folder on server:
-* Confluence link:
-* Asana board:
-* etc...
+```typ
+#show: apa.with(
+  title: "Your Paper Title",
+  author: "Your Name",
+  affiliation: "Your Department, Your University",
+  course: "Course Number: Course Name",
+  instructor: "Instructor Name",
+  due-date: "Due Date",
+  abstract: [
+    Your abstract text goes here. It should be a brief, comprehensive
+    summary of the contents of the paper, typically 150-250 words.
+  ],
+  keywords: ("keyword one", "keyword two", "keyword three"),
+)
+```
+
+### Multiple Authors
+
+```typ
+#show: apa.with(
+  title: "Collaborative Research Paper",
+  author: ("First Author", "Second Author", "Third Author"),
+  // ... other parameters
+)
+```
+
+### Custom Font
+
+APA 7 allows several fonts. You can change from the default Times New Roman:
+
+```typ
+#show: apa.with(
+  title: "Your Paper Title",
+  author: "Your Name",
+  // ... other parameters
+  font: "Calibri",  // or "Arial"
+  font-size: 11pt,
+)
+```
+
+## Headings
+
+APA 7 uses five levels of headings:
+
+```typ
+#heading-1[Level 1: Centered, Bold]
+
+#heading-2[Level 2: Flush Left, Bold]
+
+#heading-3[Level 3: Flush Left, Bold Italic]
+
+#heading-4[Level 4 Heading]Indented, bold, ends with period. Text continues on same line.
+
+#heading-5[Level 5 Heading]Indented, bold italic, ends with period. Text continues on same line.
+```
+
+## Citations
+
+The template includes helper functions for in-text citations:
+
+```typ
+// Parenthetical citation: (Author, Year)
+Research has shown significant effects #pcite("Smith", "2023").
+
+// Narrative citation: Author (Year)
+#ncite("Smith", "2023") found significant effects.
+
+// Citation with page number: (Author, Year, p. X)
+This was described as "direct quote" #pcite-p("Smith", "2023", "15").
+```
+
+## Block Quotes
+
+For quotations of 40 or more words:
+
+```typ
+#block-quote[
+  This is a longer quotation that would be 40 words or more. It is
+  indented 0.5 inches from the left margin and does not use quotation
+  marks. The citation appears at the end. #pcite-p("Author", "Year", "page")
+]
+```
+
+## Figures and Tables
+
+```typ
+#apa-figure(
+  image("figure.png", width: 80%),
+  number: 1,
+  caption: "Description of the figure",
+  note: "Any additional notes about the figure.",
+)
+
+#apa-table(
+  table(
+    columns: 3,
+    [Header 1], [Header 2], [Header 3],
+    [Data], [Data], [Data],
+  ),
+  number: 1,
+  caption: "Description of the table",
+  note: "Any additional notes about the table.",
+)
+```
+
+## References
+
+```typ
+#references[
+  Author, A. B. (Year). Title of article. _Journal Name, Volume_(Issue),
+  pages. https://doi.org/xxxxx
+
+  Author, C. D. (Year). _Title of book_. Publisher.
+]
+```
+
+## Appendix
+
+```typ
+#appendix(label: "A", title: "Survey Questions")
+
+Your appendix content here...
+```
+
+## APA 7 Formatting Summary
+
+This template implements the following APA 7 student paper requirements:
+
+| Element | Format |
+|---------|--------|
+| Paper size | US Letter (8.5" x 11") |
+| Margins | 1 inch on all sides |
+| Font | Times New Roman, 12pt |
+| Line spacing | Double-spaced |
+| Paragraph indent | 0.5 inch first line |
+| Page numbers | Top right corner |
+| Title page | Centered elements |
+| References | Hanging indent (0.5 inch) |
+
+## License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+## Acknowledgments
+
+- Based on the [APA 7th Edition Publication Manual](https://apastyle.apa.org/)
+- Formatting guidelines from [Purdue OWL](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html)
